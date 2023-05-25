@@ -1,0 +1,1 @@
+index3 dawny test pomyslnego logowania! zastapic przejsciem na inne odpowiednie podfoldery jak adm ucz oraz naucz. to przejscie index czyli zalogowanie się, forgot-password powinno tu pozostać. sprawdzic kod

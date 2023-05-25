@@ -1,0 +1,4 @@
+universal:
+http://localhost/git/projekt_dziennik/
+home:
+http://localhost/git/projekt_dziennik/pages/view/index.php
