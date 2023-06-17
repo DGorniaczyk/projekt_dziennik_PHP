@@ -70,7 +70,7 @@ if ($result->num_rows == 1) {
             header("Location: ./nauczyciel/index.php");
             exit();
         } else {
-            header("Location: ./uczen/index.php");
+            header("Location: ./user/index.php");
             exit();
         }
 /////////////////

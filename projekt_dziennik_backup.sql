@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Cze 2023, 14:51
+-- Czas generowania: 24 Maj 2023, 14:28
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -20,40 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `projekt_dziennik`
 --
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `access`
---
-
-CREATE TABLE `access` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `role` enum('admin','moderator','user') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Zrzut danych tabeli `access`
---
-
-INSERT INTO `access` (`id`, `email`, `role`) VALUES
-(1, '', 'admin'),
-(2, '', 'moderator'),
-(3, '', 'user');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('admin','moderator','user') NOT NULL DEFAULT 'admin'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -79,8 +45,7 @@ CREATE TABLE `nauczyciel` (
   `surname` varchar(150) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` int(9) NOT NULL,
-  `password` varchar(300) NOT NULL,
-  `role` enum('admin','moderator','user') NOT NULL DEFAULT 'moderator'
+  `password` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -121,28 +86,12 @@ CREATE TABLE `uczen` (
   `name` varchar(50) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(300) NOT NULL,
-  `role` enum('admin','moderator','user') NOT NULL DEFAULT 'user'
+  `password` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Indeksy dla zrzutów tabel
 --
-
---
--- Indeksy dla tabeli `access`
---
-ALTER TABLE `access`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `role` (`role`);
-
---
--- Indeksy dla tabeli `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `role` (`role`);
 
 --
 -- Indeksy dla tabeli `klasa`
@@ -155,8 +104,7 @@ ALTER TABLE `klasa`
 -- Indeksy dla tabeli `nauczyciel`
 --
 ALTER TABLE `nauczyciel`
-  ADD PRIMARY KEY (`teacher_ID`),
-  ADD KEY `role` (`role`);
+  ADD PRIMARY KEY (`teacher_ID`);
 
 --
 -- Indeksy dla tabeli `ocena`
@@ -178,24 +126,11 @@ ALTER TABLE `przedmiot`
 --
 ALTER TABLE `uczen`
   ADD PRIMARY KEY (`student_ID`),
-  ADD KEY `class_ID` (`class_ID`),
-  ADD KEY `role` (`role`);
+  ADD KEY `class_ID` (`class_ID`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
-
---
--- AUTO_INCREMENT dla tabeli `access`
---
-ALTER TABLE `access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT dla tabeli `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `klasa`
@@ -232,22 +167,10 @@ ALTER TABLE `uczen`
 --
 
 --
--- Ograniczenia dla tabeli `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`role`) REFERENCES `access` (`role`);
-
---
 -- Ograniczenia dla tabeli `klasa`
 --
 ALTER TABLE `klasa`
   ADD CONSTRAINT `klasa_ibfk_1` FOREIGN KEY (`homeroom_teacher_ID`) REFERENCES `nauczyciel` (`teacher_ID`);
-
---
--- Ograniczenia dla tabeli `nauczyciel`
---
-ALTER TABLE `nauczyciel`
-  ADD CONSTRAINT `nauczyciel_ibfk_1` FOREIGN KEY (`role`) REFERENCES `access` (`role`);
 
 --
 -- Ograniczenia dla tabeli `ocena`
@@ -266,8 +189,7 @@ ALTER TABLE `przedmiot`
 -- Ograniczenia dla tabeli `uczen`
 --
 ALTER TABLE `uczen`
-  ADD CONSTRAINT `uczen_ibfk_1` FOREIGN KEY (`class_ID`) REFERENCES `klasa` (`class_ID`),
-  ADD CONSTRAINT `uczen_ibfk_2` FOREIGN KEY (`role`) REFERENCES `access` (`role`);
+  ADD CONSTRAINT `uczen_ibfk_1` FOREIGN KEY (`class_ID`) REFERENCES `klasa` (`class_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
