@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2023 at 04:31 PM
+-- Generation Time: Jun 19, 2023 at 07:20 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -72,17 +72,16 @@ CREATE TABLE `student` (
   `surname` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` int(9) NOT NULL,
-  `password` varchar(300) NOT NULL
+  `password` varchar(300) NOT NULL,
+  `email_verification` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_ID`, `class_ID`, `name`, `surname`, `email`, `phone`, `password`) VALUES
-(2, NULL, 'Paweł', 'Musielak', 'bezpieczenstwo.projekt12@gmail.com', 123456789, '$2y$10$JuXCzIK4f5X0.LRKqwuj/O9PnW/JE2LRReqYjYaeHdyU49WwVOZi6'),
-(3, NULL, 'Paweł', 'Musielak', 'bezpieczenstwo.projekt12@gmail.com', 123456789, '$2y$10$V4xzk5JF8SuLNTG5NR/4h./3H31CBUtBA0U9eKvVvC6WuTpCfhk26'),
-(4, NULL, 'Paweł', 'Musielak', 'bezpieczenstwo.projekt12@gmail.com', 123456789, '$2y$10$8/0lD.CwAAxIAVuuHiWPo.ZceV0vWYWc4CvYYVApVtBGst0WZlKbu');
+INSERT INTO `student` (`student_ID`, `class_ID`, `name`, `surname`, `email`, `phone`, `password`, `email_verification`) VALUES
+(7, NULL, 'Paweł', 'Musielak', 'bezpieczenstwo.projekt12@gmail.com', 123456789, '$2y$10$Zym.uXX2oEOHw.W83TVxNOFauy1V5/wf4Re0ilhXlQcyNVS1HFpb2', 'true');
 
 -- --------------------------------------------------------
 
@@ -93,7 +92,8 @@ INSERT INTO `student` (`student_ID`, `class_ID`, `name`, `surname`, `email`, `ph
 CREATE TABLE `subject` (
   `subject_ID` int(11) UNSIGNED NOT NULL,
   `subject_Name` varchar(30) NOT NULL,
-  `teacher_ID` int(11) UNSIGNED DEFAULT NULL
+  `teacher_ID` int(11) UNSIGNED DEFAULT NULL,
+  `class_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -108,8 +108,16 @@ CREATE TABLE `teacher` (
   `surname` varchar(150) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` int(9) NOT NULL,
-  `password` varchar(300) NOT NULL
+  `password` varchar(300) NOT NULL,
+  `email_verification` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`teacher_ID`, `first_Name`, `surname`, `email`, `phone`, `password`, `email_verification`) VALUES
+(1, 'Janusz', 'Kowalski', 'janusz.kowalski@szkola.com', 987654321, '$2y$10$KjivXAANOkePi1Jxr6N7lupnyEEY45G2IG8Z0ApE2pqLeKIE8mxEu', 'true');
 
 -- --------------------------------------------------------
 
@@ -128,10 +136,8 @@ CREATE TABLE `verification` (
 --
 
 INSERT INTO `verification` (`id`, `code`, `email`) VALUES
-(4, '4829', 'bezpieczenstwo.projekt12@gmail.com'),
-(5, '5735', 'bezpieczenstwo.projekt12@gmail.com'),
-(6, '7194', 'bezpieczenstwo.projekt12@gmail.com'),
-(7, '7796', 'bezpieczenstwo.projekt12@gmail.com');
+(10, '7061', 'bezpieczenstwo.projekt12@gmail.com'),
+(11, '8630', 'janusz.kowalski@szkola.com');
 
 --
 -- Indexes for dumped tables
@@ -200,7 +206,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `class_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `grade`
@@ -212,19 +218,25 @@ ALTER TABLE `grade`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `student_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `subject_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `teacher_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `verification`
 --
 ALTER TABLE `verification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
