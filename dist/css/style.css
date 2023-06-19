@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+}
+
+
+.form-group{
+    font-family: helvetica;
+    width: 400px;
+    height: 50px;
+}
+
+.form-btn{
+    margin-top: 2px;
+}
+
+.resend-email{
+    font-family: helvetica;
+    margin-top: 10px;
+}
+
+.verification-text{
+    font-family: helvetica;
+    font-size:large;
+}

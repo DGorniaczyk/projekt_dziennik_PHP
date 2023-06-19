@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-image:  url(../assets/background.jpg);
+   
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.container{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logoutBtn{
+    background-color: transparent;
+    color: white;
+    border: 5px solid black;
+   
+}
+
+.teacherWelcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: helvetica;
+    font-size: 25px;
+}
+
+table, tr, th, td{
+padding: 10px;
+ width: 30vw;
+ height: 15vh;
+ background-color: wheat;
+ border: solid 1px wheat;
+ padding: 10px;
+ text-align: center;
+ color: white; 
+}
