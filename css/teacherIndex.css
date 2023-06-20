@@ -1,11 +1,13 @@
 *{
     margin: 0;
     padding: 0;
-    background-image:  url(../assets/background.jpg);
-   
 }
 
 body{
+    background-image:  linear-gradient(to bottom right, green, black);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
 }
@@ -24,30 +26,86 @@ body{
     right: 0;
 }
 
-.logoutBtn{
-    background-color: transparent;
-    color: white;
-    border: 5px solid black;
-   
+.goBackContainer{
+  padding: 10px;
 }
 
-.teacherWelcome{
+.logoutBtn{
+    background-color: blue;
+    color: white;
+    font-weight: 900;
+    font-family: helvetica;
+    border: 2px solid white;
+}
+
+.logoutBtn:hover{
+    background-color: rgb(6, 6, 126);
+}
+
+.welcome{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     font-family: helvetica;
-    font-size: 25px;
+    font-size: 35px;
+    font-weight: bold;
 }
 
-table, tr, th, td{
+table, tr, th, td{  
 padding: 10px;
- width: 30vw;
- height: 15vh;
- background-color: wheat;
- border: solid 1px wheat;
+ width: 30%;
+ height: 5%;
+ background-color: white;
+ outline: 5px black solid;
  padding: 10px;
  text-align: center;
- color: white; 
+ color: black; 
+}
+
+td{
+    
+}
+
+
+.tableHeaders{
+    font-size: 40px;
+    color: black;
+    font-family: helvetica;
+    font-weight: bold;
+}
+
+
+
+.tableElement{
+    font-size: 35px;
+    color: black;
+    font-family: helvetica;
+    font-weight: bold;
+}
+
+.backBtn{
+    background-color: red;
+    color: white;
+    font-weight: 900;
+    font-family: helvetica;
+    border: 2px solid white;
+}
+
+.backBtn:hover{
+    background-color: rgb(122, 7, 7) ;
+}
+
+.submitBtn{
+
+}
+
+.submitBtn:hover{
+
+}
+
+.gradeText{
+ position: relative;
+ /* https://stackoverflow.com/questions/23556364/how-to-convert-columns-to-rows-using-css */
 }
