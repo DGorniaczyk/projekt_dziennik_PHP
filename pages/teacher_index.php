@@ -17,14 +17,14 @@ if (!isset($_SESSION["user"]))
   <title>Teacher's control panel</title>
 </head>
 <body>
-<h4 class="teacherWelcome">Welcome to the teacher's control panel!</h4>
+<h4 class="welcome">Welcome to the teacher's control panel!</h4>
 <div class="tableContainer"><table>
   <tr>
     <th class="tableHeaders">Subject</th>
     <th class="tableHeaders">Class</th>
   </tr>
 </div>
-<?php
+<?php 
   $email = $_SESSION["email"];
   require_once "../scripts/database.php";
   $sql = "SELECT * FROM teacher t RIGHT JOIN subject s on t.teacher_ID=s.teacher_ID RIGHT JOIN class c on c.class_ID=s.class_ID WHERE t.email='$email';";
@@ -34,7 +34,8 @@ if (!isset($_SESSION["user"]))
     echo <<< TABLEUSERS
       <tr>
         <td class="tableElement">$user[subject_Name]</td>
-        <td class="tableElement">$user[class_Name]</td>
+
+        <td class="tableElement"><a href='class_grades.php?subject_ID=$user[subject_ID]'>$user[class_Name]</a></td>
       </tr>
       
 TABLEUSERS;
@@ -42,9 +43,9 @@ TABLEUSERS;
   echo "</table>";
 ?>
 <div class="container">
-  <button href="../scripts/logout.php" class="logoutBtn">
-        Logout
-</buton>
+<a href="../scripts/logout.php" class="logoutBtn">
+       LOGOUT
+</a>
     </div>
 </body>
 </html>
